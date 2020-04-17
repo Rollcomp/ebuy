@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/auth-service/auth-service.iml" filepath="$PROJECT_DIR$/auth-service/auth-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/discover-service/discover-service.iml" filepath="$PROJECT_DIR$/discover-service/discover-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/basket-service/basket-service.iml" filepath="$PROJECT_DIR$/basket-service/basket-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discovery-service/discovery-service.iml" filepath="$PROJECT_DIR$/discovery-service/discovery-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/gateway-service/gateway-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/product-service/product-service.iml" filepath="$PROJECT_DIR$/product-service/product-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/search-service/search-service.iml" filepath="$PROJECT_DIR$/search-service/search-service.iml" />
     </modules>
   </component>
 </project>
