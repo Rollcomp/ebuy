@@ -7,12 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="auth-service" />
+        <module name="basket-service" />
+        <module name="checkout-service" />
+        <module name="discovery" />
+        <module name="discovery-service" />
+        <module name="gateway-service" />
         <module name="product-service" />
+        <module name="search-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth-service" target="1.8" />
+      <module name="basket-service" target="1.8" />
+      <module name="checkout-service" target="1.8" />
+      <module name="discovery" target="1.8" />
+      <module name="discovery-service" target="1.8" />
+      <module name="gateway-service" target="1.8" />
       <module name="product-service" target="1.8" />
+      <module name="search-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

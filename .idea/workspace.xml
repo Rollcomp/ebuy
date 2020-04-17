@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2dd5528-db78-4548-b33b-6f9add9582f8" name="Default Changelist" comment="Default Changelist">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Spring_5_2_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/.mvn/wrapper/MavenWrapperDownloader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/.mvn/wrapper/maven-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/.mvn/wrapper/maven-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/mvnw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/mvnw.cmd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/src/main/java/org/ebuy/discoverservice/DiscoverServiceApplication.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/src/main/resources/application.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/discover-service/src/test/java/org/ebuy/discoverservice/DiscoverServiceApplicationTests.java" afterPath="" />
+    <list default="true" id="e2dd5528-db78-4548-b33b-6f9add9582f8" name="Default Changelist" comment="Initial one">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
@@ -21,6 +10,12 @@
     </list>
     <ignored path="$PROJECT_DIR$/product-service/target/" />
     <ignored path="$PROJECT_DIR$/auth-service/target/" />
+    <ignored path="$PROJECT_DIR$/discovery/target/" />
+    <ignored path="$PROJECT_DIR$/gateway-service/target/" />
+    <ignored path="$PROJECT_DIR$/basket-service/target/" />
+    <ignored path="$PROJECT_DIR$/discovery-service/target/" />
+    <ignored path="$PROJECT_DIR$/search-service/target/" />
+    <ignored path="$PROJECT_DIR$/checkout-service/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -568,9 +563,57 @@
       <envs />
       <method />
     </configuration>
-    <list size="2">
+    <configuration default="false" name="DiscoveryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.ebuy.DiscoveryApplication" />
+      <module name="discovery" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.ebuy.GatewayServiceApplication" />
+      <module name="gateway-service" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="BasketServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.ebuy.BasketServiceApplication" />
+      <module name="basket-service" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.ebuy.DiscoveryServiceApplication" />
+      <module name="discovery-service" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SearchServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.ebuy.SearchServiceApplication" />
+      <module name="search-service" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="CheckoutServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.ebuy.CheckoutServiceApplication" />
+      <module name="checkout-service" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.AuthServiceApplication" />
       <item index="1" class="java.lang.String" itemvalue="Spring Boot.ProductServiceApplication" />
+      <item index="2" class="java.lang.String" itemvalue="Spring Boot.DiscoveryApplication" />
+      <item index="3" class="java.lang.String" itemvalue="Spring Boot.GatewayServiceApplication" />
+      <item index="4" class="java.lang.String" itemvalue="Spring Boot.BasketServiceApplication" />
+      <item index="5" class="java.lang.String" itemvalue="Spring Boot.DiscoveryServiceApplication" />
+      <item index="6" class="java.lang.String" itemvalue="Spring Boot.SearchServiceApplication" />
+      <item index="7" class="java.lang.String" itemvalue="Spring Boot.CheckoutServiceApplication" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -589,12 +632,20 @@
       <workItem from="1587073227559" duration="2651000" />
       <workItem from="1587146909208" duration="28000" />
       <workItem from="1587146940757" duration="19000" />
-      <workItem from="1587146962665" duration="252000" />
+      <workItem from="1587146962665" duration="1740000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial one">
+      <created>1587147272644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587147272644</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299000" />
+    <option name="totallyTimeSpent" value="1787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1378" height="744" extended-state="0" />
@@ -602,7 +653,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -638,6 +689,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial one" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial one" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="200" width="800" height="677" key="#Project_Structure" timestamp="1587074360274">
@@ -746,7 +801,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>search-service</last-edited>
+          <last-edited>checkout-service</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
