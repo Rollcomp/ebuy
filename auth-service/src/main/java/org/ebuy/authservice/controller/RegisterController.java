@@ -58,7 +58,7 @@ public class RegisterController {
         /* Only userDto credential validation will be performed in controller to decrease controller complexity*/
         //Firstly check is this a valid userDto object or not
         if (result.hasErrors()) {
-            throw new UserCredentialException("Please check user credentials! " + userDto.toString());
+            throw new UserCredentialException("Please check user credentials! " +   userDto.toString());
         }
 
         User registeredUser = userService.registerNewUserAccount(userDto);
