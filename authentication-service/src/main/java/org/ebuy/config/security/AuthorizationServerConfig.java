@@ -1,4 +1,4 @@
-package org.ebuy.config;
+package org.ebuy.config.security;
 
 import org.ebuy.service.ClientService;
 import org.ebuy.service.UserService;

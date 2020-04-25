@@ -1,4 +1,4 @@
-package org.ebuy.config;
+package org.ebuy.config.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ public class JwtTokenStoreConfig {
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        JwtAccessTokenConverter converter = new EBuyJwtAccessTokenConverter();
         converter.setSigningKey(signingKey);
         return converter;
     }

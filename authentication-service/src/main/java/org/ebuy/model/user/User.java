@@ -31,6 +31,7 @@ public class User implements UserDetails {
     private Set<Authority> authorities = new HashSet<>();
 
     private boolean blocked;
+    private int userStatusType;
 
     public String getId() {
         return id;
@@ -117,6 +118,14 @@ public class User implements UserDetails {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public int getUserStatusType() {
+        return userStatusType;
+    }
+
+    public void setUserStatusType(int userStatusType) {
+        this.userStatusType = userStatusType;
     }
 
 }

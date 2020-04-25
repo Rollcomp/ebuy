@@ -1,4 +1,4 @@
-package org.ebuy.config;
+package org.ebuy.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
