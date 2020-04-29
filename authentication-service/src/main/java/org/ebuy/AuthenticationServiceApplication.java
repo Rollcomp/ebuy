@@ -13,9 +13,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableWebSecurity
 @EnableDiscoveryClient
 public class AuthenticationServiceApplication {
-    @Autowired
-    private UserRepository userRepository;
-
 
     public static void main(String[] args) {
         SpringApplication.run(AuthenticationServiceApplication.class, args);
