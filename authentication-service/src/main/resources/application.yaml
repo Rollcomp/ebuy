@@ -1,4 +1,9 @@
+server:
+  port: 8082
+
 spring:
+  application:
+    name: authentication-service
   data:
     mongodb:
       uri: mongodb+srv://ebuy-authdb-admin:rWdH79xYfj2aVODx@ebuy-auth-cluster-mivhj.mongodb.net/test
@@ -6,3 +11,13 @@ spring:
 logging:
   level:
     org.springframework.security: DEBUG
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+      preferIpAddress: true
+
