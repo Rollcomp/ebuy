@@ -1,15 +1,14 @@
 package org.ebuy.controller;
 
-import org.ebuy.exception.CategoryNotFoundException;
-import org.ebuy.model.category.Category;
-import org.ebuy.model.category.request.CategoryRequest;
+import org.ebuy.model.Category;
+import org.ebuy.model.mapper.CategoryMapper;
+import org.ebuy.model.request.CategoryRequest;
 import org.ebuy.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * Created by Burak Köken on 2.5.2020.
@@ -19,31 +18,37 @@ import java.util.Optional;
 public class CategoryController {
 
     private CategoryService categoryService;
+    private CategoryMapper categoryMapper;
 
     @Autowired
-    private CategoryController(CategoryService categoryService) {
+    private CategoryController(CategoryService categoryService, CategoryMapper categoryMapper) {
         this.categoryService = categoryService;
+        this.categoryMapper = categoryMapper;
     }
 
     @GetMapping("/")
     public ResponseEntity<?> getCategories() {
-        return ResponseEntity.ok(categoryService.findAllCategories());
+        List<Category> categoryList = categoryService.findAllCategories();
+        return ResponseEntity.ok(categoryMapper.toCategoryDtoList(categoryList));
     }
 
     @GetMapping("/{categoryId}")
     public ResponseEntity<?> getCategory(@PathVariable long categoryId) {
-        return ResponseEntity.ok(categoryService.findCategory(categoryId));
+        Category category = categoryService.findCategory(categoryId);
+        return ResponseEntity.ok(categoryMapper.toCategoryDto(category));
     }
 
     @PostMapping("/")
     public ResponseEntity<?> createCategory(@RequestBody CategoryRequest request) {
-        return ResponseEntity.ok(categoryService.createCategory(null));
+        Category savedCategory = categoryService.createCategory(categoryMapper.toCategory(request), request.getParentCategory());
+        return ResponseEntity.ok(categoryMapper.toCategoryDto(savedCategory));
     }
 
     @PutMapping("/{categoryId}")
     public ResponseEntity<?> updateCategory(@PathVariable long categoryId, CategoryRequest request) {
-        Category updatedCategory = categoryService.updateCategory(categoryId, null);
-        return ResponseEntity.ok(updatedCategory);
+        Category updatedCategory = categoryMapper.toCategory(request);
+        Category result = categoryService.updateCategory(categoryId, updatedCategory, request.getParentCategory());
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{categoryId}")

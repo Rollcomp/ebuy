@@ -16,7 +16,7 @@ public class CategoryUtil {
         }
         categoryName = categoryName.trim().replaceAll("\\s{2,}", " ")
                 .toLowerCase();
-        categoryName = categoryName.replaceAll("\\s+[&]\\s+", "--");
+        categoryName = categoryName.replaceAll("\\s*[&]\\s*", "--");
         categoryName = categoryName.replaceAll("\\s", "-");
         categoryName = replaceTurkishCharacters(categoryName);
         return categoryName;

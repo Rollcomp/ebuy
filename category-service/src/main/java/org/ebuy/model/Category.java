@@ -1,8 +1,13 @@
-package org.ebuy.model.category;
+package org.ebuy.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,6 +15,8 @@ import java.util.Set;
  * Created by Burak Köken on 2.5.2020.
  */
 @Entity
+@Getter
+@Setter
 public class Category {
 
     @Id
@@ -32,45 +39,11 @@ public class Category {
     )
     private Set<Category> subCategories;
 
-    public long getId() {
-        return id;
-    }
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBeautifiedName() {
-        return beautifiedName;
-    }
-
-    public void setBeautifiedName(String beautifiedName) {
-        this.beautifiedName = beautifiedName;
-    }
-
-    public Category getParent() {
-        return parent;
-    }
-
-    public void setParent(Category parent) {
-        this.parent = parent;
-    }
-
-    public Set<Category> getSubCategories() {
-        return subCategories;
-    }
-
-    public void setSubCategories(Set<Category> subCategories) {
-        this.subCategories = subCategories;
-    }
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
 
     public void addSubCategory(Category subCategory) {
         subCategories.add(subCategory);
@@ -79,7 +52,7 @@ public class Category {
 
     public void removeSubCategory(Category subCategory) {
         subCategories.remove(subCategory);
-
+        subCategory.setParent(null);
     }
 
     @Override
