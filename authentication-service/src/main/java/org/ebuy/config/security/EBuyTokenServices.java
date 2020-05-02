@@ -1,9 +1,11 @@
 package org.ebuy.config.security;
 
+import org.ebuy.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
+import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -12,6 +14,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * Created by Burak Köken on 26.4.2020.
  */
 public class EBuyTokenServices extends DefaultTokenServices {
+
+    @Autowired
+    private ClientService clientService;
 
     @Autowired
     private JwtTokenStore tokenStore;
@@ -29,7 +34,6 @@ public class EBuyTokenServices extends DefaultTokenServices {
             if(result == null) {
                 throw new InvalidTokenException("Invalid access token: " + accessTokenValue);
             } else {
-                /*
                 if(clientService != null) {
                     String clientId = result.getOAuth2Request().getClientId();
                     try {
@@ -37,7 +41,7 @@ public class EBuyTokenServices extends DefaultTokenServices {
                     } catch (ClientRegistrationException var6) {
                         throw new InvalidTokenException("Client not valid: " + clientId, var6);
                     }
-                }*/
+                }
                 return result;
             }
         }

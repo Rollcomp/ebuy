@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+zuul:
+  ignored-services: '*'
+  host:
+    connect-timeout-millis: 50000000
+    socket-timeout-millis: 5000000
+  routes:
+    authentication-service:
+      serviceId: authentication-service
+      path: /authservice/**
+      stripPrefix: true
+  sensitive-headers:
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+  instance:
+      preferIpAddress: true
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 15000
+hystrixProperties:
+  hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 2000
