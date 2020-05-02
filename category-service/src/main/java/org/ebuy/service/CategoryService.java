@@ -1,11 +1,12 @@
 package org.ebuy.service;
 
-import org.ebuy.exception.BeautifiedNameException;
-import org.ebuy.exception.CategoryNotFoundException;
-import org.ebuy.exception.CategoryUpdateException;
-import org.ebuy.exception.ParentCategoryNotFoundException;
+import org.ebuy.exception.*;
 import org.ebuy.helper.CategoryUtil;
+import org.ebuy.model.Attribute;
 import org.ebuy.model.Category;
+import org.ebuy.model.CategoryAttribute;
+import org.ebuy.repository.AttributeRepository;
+import org.ebuy.repository.CategoryAttributeRepository;
 import org.ebuy.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,10 +24,15 @@ import java.util.Optional;
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
+    private AttributeRepository attributeRepository;
+    private CategoryAttributeRepository categoryAttributeRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository,
+                           AttributeRepository attributeRepository,
+                           CategoryAttributeRepository categoryAttributeRepository) {
         this.categoryRepository = categoryRepository;
+        this.attributeRepository = attributeRepository;
     }
 
     public List<Category> findAllCategories() {
@@ -91,6 +97,20 @@ public class CategoryService {
             category.getParent().removeSubCategory(category);
         }
         categoryRepository.delete(category);
+    }
+
+    public CategoryAttribute addAttributeToCategory(long categoryId, CategoryAttribute categoryAttribute, long attributeId) {
+        /* category */
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        Category category = categoryOptional.orElseThrow(() -> new CategoryNotFoundException(categoryId));
+        /* attribute */
+        Optional<Attribute> attributeOptional = attributeRepository.findById(attributeId);
+        Attribute attribute = attributeOptional.orElseThrow(() -> new AttributeNotFoundException(categoryId));
+
+        categoryAttribute.setAttribute(attribute);
+        category.addCategoryAttribute(categoryAttribute);
+        categoryRepository.save(category);
+        return categoryAttribute;
     }
 
 }

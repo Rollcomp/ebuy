@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ public class Category {
     private String beautifiedName;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="parent_category_id")
     private Category parent;
 
     @OneToMany(
@@ -37,7 +39,15 @@ public class Category {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<Category> subCategories;
+    private Set<Category> subCategories = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "category_id")
+    private Set<CategoryAttribute> categoryAttributes = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime createDateTime;
@@ -53,6 +63,14 @@ public class Category {
     public void removeSubCategory(Category subCategory) {
         subCategories.remove(subCategory);
         subCategory.setParent(null);
+    }
+
+    public void addCategoryAttribute(CategoryAttribute categoryAttribute) {
+        categoryAttributes.add(categoryAttribute);
+    }
+
+    public void removeCategoryAttribute(CategoryAttribute categoryAttribute) {
+        categoryAttributes.remove(categoryAttribute);
     }
 
     @Override
