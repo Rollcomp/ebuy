@@ -1,0 +1,35 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: mail-service
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ebuytestuser@gmail.com
+    password: Asdf1234.
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      userRegistered: USER_REGISTERED_TOPIC
+    consumer:
+      group-id: mail_consume
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+  instance:
+    preferIpAddress: true

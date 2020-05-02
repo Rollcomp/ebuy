@@ -1,7 +1,7 @@
 package org.ebuy.config.security;
 
 import org.ebuy.service.ClientService;
-import org.ebuy.service.UserService;
+import org.ebuy.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private ClientService clientService;
@@ -62,7 +62,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenStore(tokenStore)
                 .accessTokenConverter(accessTokenConverter)
                 .tokenServices(tokenServices)
-                .userDetailsService(userService);
+                .userDetailsService(customUserDetailsService);
     }
 
 }

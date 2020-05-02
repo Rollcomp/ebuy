@@ -7,6 +7,10 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://ebuy-authdb-admin:rWdH79xYfj2aVODx@ebuy-auth-cluster-mivhj.mongodb.net/test
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      userRegistered: USER_REGISTERED_TOPIC
 
 logging:
   level:
@@ -22,4 +26,3 @@ eureka:
       enabled: true
   instance:
       preferIpAddress: true
-

@@ -1,7 +1,7 @@
 package org.ebuy.config.security;
 
 import org.ebuy.constant.EBuyJwtTokenClaim;
-import org.ebuy.service.UserService;
+import org.ebuy.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -22,7 +22,7 @@ public class EBuyAccessTokenConverter extends DefaultAccessTokenConverter {
     private EBuyUserAuthenticationConverter userTokenConverter = new EBuyUserAuthenticationConverter();
 
     @Autowired
-    private UserService userService;
+    private CustomUserDetailsService customUserDetailsService;
 
 
     @Override
