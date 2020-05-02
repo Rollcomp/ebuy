@@ -1,11 +1,8 @@
 package org.ebuy.controller;
 
-import org.ebuy.service.UserService;
+import org.ebuy.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * Created by Burak Köken on 23.4.2020.
@@ -14,11 +11,11 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Autowired
-    public UserController(final UserService userService) {
-        this.userService = userService;
+    public UserController(final CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
     }
 
 }
