@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ebuy-category-service
+  datasource:
+    url: jdbc:postgresql://ec2-34-200-72-77.compute-1.amazonaws.com/dcbiqdr154a6s1
+    username: gflmbekgpdhkyo
+    password: 4c20a0ffbe80bdddc4ea8adf4469942ae09afcf1182ff7ba88888dea8b609314
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+  jackson:
+    serialization:
+      indent_output : true
