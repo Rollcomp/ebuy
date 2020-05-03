@@ -11,13 +11,13 @@ zuul:
     connect-timeout-millis: 50000000
     socket-timeout-millis: 5000000
   routes:
-    authentication-service:
-      serviceId: authentication-service
-      path: /authservice/**
+    oauth-server:
+      serviceId: oauth-server
+      path: /oauth/**
       stripPrefix: true
-    user-register-service:
-      serviceId: user-register-service
-      path: /registerservice/**
+    account-service:
+      serviceId: account-service
+      path: /accounts/**
       stripPrefix: true
   sensitive-headers:
 
