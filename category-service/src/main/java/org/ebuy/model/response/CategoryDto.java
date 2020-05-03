@@ -13,10 +13,10 @@ import java.util.Set;
 @Setter
 public class CategoryDto {
 
-    private long id;
+    private Long id;
     private String name;
     private String beautifiedName;
-    private long parentCategoryId;
+    private Long parentCategoryId;
     private Set<CategoryDto> subCategories;
 
 }

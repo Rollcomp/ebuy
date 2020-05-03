@@ -5,7 +5,7 @@ package org.ebuy.model.response;
  */
 public class AttributeDto {
 
-    private long id;
+    private Long id;
     private String name;
 
 }

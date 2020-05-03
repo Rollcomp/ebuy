@@ -16,7 +16,7 @@ public class CategoryAttribute {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private boolean required;
     private boolean allowCustom;

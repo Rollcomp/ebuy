@@ -3,6 +3,7 @@ package org.ebuy.model.mapper;
 import org.ebuy.model.CategoryAttribute;
 import org.ebuy.model.request.CategoryAttributeRequest;
 import org.ebuy.model.response.CategoryAttributeDto;
+import org.ebuy.model.response.CategoryAttributesWithoutValuesDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -19,8 +20,7 @@ public interface CategoryAttributeMapper {
     @Mapping(target = "attributeValues", source = "categoryAttribute.attribute.attributeValues")
     CategoryAttributeDto toCategoryAttributeDto(CategoryAttribute categoryAttribute);
 
-    @Mapping(target = "attributeValues", ignore = true)
-    CategoryAttributeDto toCategoryAttributeDtoWithoutValues(CategoryAttribute categoryAttribute);
+    CategoryAttributesWithoutValuesDto toCategoryAttributeDtoWithoutValues(CategoryAttribute categoryAttribute);
 
     Set<CategoryAttributeDto> toCategoryAttributes(Set<CategoryAttribute> attributes);
 

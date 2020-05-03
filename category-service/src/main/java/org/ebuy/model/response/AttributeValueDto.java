@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class AttributeValueDto {
 
-    private long id;
+    private Long id;
     private String name;
 
 }

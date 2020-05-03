@@ -35,7 +35,7 @@ public class CategoryController {
         this.categoryAttributeMapper = categoryAttributeMapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> getCategories() {
         List<Category> categoryList = categoryService.findAllCategories();
         return ResponseEntity.ok(categoryMapper.toCategoryDtoList(categoryList));

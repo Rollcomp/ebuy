@@ -10,11 +10,10 @@ import java.util.Set;
  */
 @Getter
 @Setter
-public class CategoryAttributesDto {
+public class CategoryAttributesWithoutValuesDto {
 
     private Long id;
     private String name;
     private String beautifiedName;
-    private Set<CategoryAttributeDto> categoryAttributes;
 
 }

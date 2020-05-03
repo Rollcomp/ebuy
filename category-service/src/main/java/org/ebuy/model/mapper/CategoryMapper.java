@@ -5,6 +5,7 @@ import org.ebuy.model.request.CategoryRequest;
 import org.ebuy.model.response.CategoryAttributesDto;
 import org.ebuy.model.response.CategoryDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public interface CategoryMapper {
 
     Category toCategory(CategoryRequest categoryRequest);
 
+    @Mapping(target = "parentCategoryId" , source = "category.parent.id")
     CategoryDto toCategoryDto(Category category);
 
     List<CategoryDto> toCategoryDtoList(List<Category> categoryList);
