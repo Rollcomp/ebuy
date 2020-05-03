@@ -11,12 +11,10 @@ public class UserDto {
 
     private String password;
 
-    private boolean enabled;
 
     public UserDto(String email, String password, boolean enabled) {
         this.email = email;
         this.password = password;
-        this.enabled = enabled;
     }
 
     public String getEmail() {
@@ -34,13 +32,4 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
 }

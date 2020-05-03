@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,9 +26,10 @@ public class User implements UserDetails {
 
     private String password;
     private boolean enabled;
-    //TODO: ConfirmationToken will be removed
     private String activationKey;
     private String resetPasswordKey;
+    private LocalDateTime activationKeycreatedTime;
+    private LocalDateTime resetPasswordKeycreatedTime;
 
     private Set<Authority> authorities = new HashSet<>();
 
@@ -129,4 +131,19 @@ public class User implements UserDetails {
         this.userStatusType = userStatusType;
     }
 
+    public LocalDateTime getActivationKeycreatedTime() {
+        return activationKeycreatedTime;
+    }
+
+    public void setActivationKeycreatedTime(LocalDateTime activationKeycreatedTime) {
+        this.activationKeycreatedTime = activationKeycreatedTime;
+    }
+
+    public LocalDateTime getResetPasswordKeycreatedTime() {
+        return resetPasswordKeycreatedTime;
+    }
+
+    public void setResetPasswordKeycreatedTime(LocalDateTime resetPasswordKeycreatedTime) {
+        this.resetPasswordKeycreatedTime = resetPasswordKeycreatedTime;
+    }
 }

@@ -9,11 +9,7 @@ import org.ebuy.exception.TokenNotValidException;
 import org.ebuy.exception.PasswordNotMatchingException;
 import org.ebuy.exception.UserExistException;
 import org.ebuy.kafka.Sender;
-import org.ebuy.model.ConfirmationToken;
-import org.ebuy.model.PasswordResetToken;
 import org.ebuy.model.user.User;
-import org.ebuy.repository.ConfirmationTokenRepository;
-import org.ebuy.repository.PasswordResetTokenRepository;
 import org.ebuy.repository.UserRepository;
 import org.ebuy.util.TokenUtil;
 import org.ebuy.util.UserUtil;
@@ -21,14 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Created by Ozgur Ustun on May, 2020
@@ -58,12 +55,6 @@ public class UserService {
     @Autowired
     private TokenUtil tokenUtil;
 
-    @Autowired
-    private ConfirmationTokenRepository tokenRepository;
-
-    @Autowired
-    private PasswordResetTokenRepository resetTokenRepository;
-
     private void saveRegisteredUser(User user) {
         userRepository.save(user);
     }
@@ -83,13 +74,13 @@ public class UserService {
         User registeredUser = new User();
         registeredUser.setEmail(userDto.getEmail());
         registeredUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        registeredUser.setEnabled(userDto.isEnabled());
+        registeredUser.setEnabled(false);
         registeredUser.setAuthorities(new HashSet<Authority>(Collections.singleton(Authority.REGISTERED_USER)));
+        registeredUser.setActivationKey(UUID.randomUUID().toString());
+        registeredUser.setActivationKeycreatedTime(LocalDateTime.now());
+        userRepository.save(registeredUser);
+        MailDto mailDto = new MailDto(registeredUser.getEmail(), registeredUser.getActivationKey());
 
-        ConfirmationToken token = new ConfirmationToken(registeredUser);
-        tokenRepository.save(token);
-
-        MailDto mailDto = new MailDto(registeredUser.getEmail(), token.getGeneratedConfirmationToken());
         sender.sendMail(mailDto, registerUserTopic);
         userRepository.save(registeredUser);
 
@@ -98,39 +89,38 @@ public class UserService {
     }
 
     public Message<String> confirmUserAccount(String confirmationToken) {
-        Optional<ConfirmationToken> verificationToken = tokenRepository.findByGeneratedConfirmationToken(confirmationToken);
+        Optional<User> user = userRepository.findByActivationKey(confirmationToken);
 
-        if (!verificationToken.isPresent() || !tokenUtil.isValidConfirmationToken(verificationToken.get())) {
+        if (!user.isPresent() || !tokenUtil.isValidConfirmationToken(user.get())) {
             throw new TokenNotValidException("Token is not valid!");
         }
-            User user = findUserByEmail(verificationToken.get().getUser().getEmail());
-            user.setEnabled(true);
-            saveRegisteredUser(user);
-            return MessageBuilder.withPayload("User account has confirmed").setHeader("userId", user.getId()).build();
+            user.get().setEnabled(true);
+            saveRegisteredUser(user.get());
+            return MessageBuilder.withPayload("User account has confirmed").setHeader("userId", user.get().getId()).build();
     }
 
     public Message<String> resetUserPassword(String userEmail) {
 
         User user = findUserByEmail(userEmail);
-        PasswordResetToken token = new PasswordResetToken(user);
-        resetTokenRepository.save(token);
-        MailDto mailDto = new MailDto(userEmail,token.getGeneratedPasswordResetToken());
+        user.setResetPasswordKey(UUID.randomUUID().toString());
+        user.setResetPasswordKeycreatedTime(LocalDateTime.now());
+        userRepository.save(user);
+        MailDto mailDto = new MailDto(userEmail,user.getResetPasswordKey());
         sender.sendMail(mailDto,resetPasswordTopic);
         return MessageBuilder.withPayload("Password reset mail has been sent").setHeader("userId", user.getId()).build();
     }
 
     public Message<String> confirmUserResetPassword(String resetPasswordToken, ResetPasswordDto passwordDto) throws PasswordNotMatchingException {
-        Optional<PasswordResetToken> passwordResetToken = resetTokenRepository.findByGeneratedPasswordResetToken(resetPasswordToken);
-        if(!passwordResetToken.isPresent() || !tokenUtil.isValidPasswordResetToken(passwordResetToken.get())){
+        Optional<User> user = userRepository.findByResetPasswordKey(resetPasswordToken);
+        if(!user.isPresent() || !tokenUtil.isValidPasswordResetToken(user.get())){
             throw new TokenNotValidException("Token is not valid!");
         }
-        User user = findUserByEmail(resetTokenRepository.findByGeneratedPasswordResetToken(resetPasswordToken).get().getUser().getEmail());
         if (!passwordDto.getNewPassword().equals(passwordDto.getNewPasswordAgain())) {
             throw new PasswordNotMatchingException("Password not matching!");
         }
-        user.setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
-        userRepository.save(user);
-        return MessageBuilder.withPayload("User password has resetted").setHeader("userId", user.getId()).build();
+        user.get().setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
+        userRepository.save(user.get());
+        return MessageBuilder.withPayload("User password has resetted").setHeader("userId", user.get().getId()).build();
     }
 
     public Message<String> changeUserPassword(@RequestBody ChangePasswordDto changePasswordDto) throws PasswordNotMatchingException {
