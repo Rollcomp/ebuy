@@ -36,11 +36,11 @@ public class CategoryService {
     }
 
     public List<Category> findAllCategories() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAllCategories();
     }
 
     public Category findCategory(long categoryId) {
-        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        Optional<Category> categoryOptional = categoryRepository.findCategoryById(categoryId);
         return categoryOptional.orElseThrow(() -> new CategoryNotFoundException(categoryId));
     }
 

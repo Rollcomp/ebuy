@@ -17,6 +17,6 @@ public class CategoryDto {
     private String name;
     private String beautifiedName;
     private Long parentCategoryId;
-    private Set<CategoryDto> subCategories;
+    private Set<SubCategoryDto> subCategories;
 
 }

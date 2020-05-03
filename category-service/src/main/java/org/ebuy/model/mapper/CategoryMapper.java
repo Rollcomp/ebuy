@@ -4,6 +4,7 @@ import org.ebuy.model.Category;
 import org.ebuy.model.request.CategoryRequest;
 import org.ebuy.model.response.CategoryAttributesDto;
 import org.ebuy.model.response.CategoryDto;
+import org.ebuy.model.response.SubCategoryDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -23,5 +24,7 @@ public interface CategoryMapper {
     List<CategoryDto> toCategoryDtoList(List<Category> categoryList);
 
     CategoryAttributesDto toCategoryAttributesDto(Category category);
+
+    SubCategoryDto toSubCategoryDto(Category category);
 
 }
