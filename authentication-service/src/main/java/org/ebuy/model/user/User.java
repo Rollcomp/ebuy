@@ -25,6 +25,7 @@ public class User implements UserDetails {
 
     private String password;
     private boolean enabled;
+    //TODO: ConfirmationToken will be removed
     private String activationKey;
     private String resetPasswordKey;
 
