@@ -1,28 +1,21 @@
 server:
-  port: 8084
+  port: 8082
 
 spring:
   application:
-    name: mail-service
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ebuytestuser@gmail.com
-    password: Asdf1234.
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-    protocol: smtp
+    name: oauth-server
+  data:
+    mongodb:
+      uri: mongodb+srv://ebuy-authdb-admin:rWdH79xYfj2aVODx@ebuy-auth-cluster-mivhj.mongodb.net/test
   kafka:
     bootstrap-servers: localhost:9092
     topic:
       userRegistered: USER_REGISTERED_TOPIC
       userPassword: USER_PASSWORD_TOPIC
-    consumer:
-      group-id: mail_consume
+
+logging:
+  level:
+    org.springframework.security: DEBUG
 
 eureka:
   client:
@@ -33,4 +26,4 @@ eureka:
     healthcheck:
       enabled: true
   instance:
-    preferIpAddress: true
+      preferIpAddress: true

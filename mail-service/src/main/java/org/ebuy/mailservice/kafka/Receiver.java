@@ -25,10 +25,18 @@ public class Receiver {
     private EmailService emailService;
 
     @KafkaListener(topics = "${spring.kafka.topic.userRegistered}", autoStartup = "true")
-    public void receive(@Payload ReceiveMailDto receiveMailDto) {
+    public void receiveRegisterMail(@Payload ReceiveMailDto receiveMailDto) {
         LOGGER.debug("received paylod" + receiveMailDto.toString());
         emailService.sendRegisterMail(receiveMailDto);
         latch.countDown();
     }
+
+    @KafkaListener(topics = "${spring.kafka.topic.userPassword}", autoStartup = "true")
+    public void receivePasswordResetMail(@Payload ReceiveMailDto mailDto){
+        LOGGER.debug("received paylod" + mailDto.toString());
+        emailService.sendPasswordResetMail(mailDto);
+        latch.countDown();
+    }
+
 
 }

@@ -17,18 +17,22 @@ public class EmailService {
     public JavaMailSender emailSender;
 
     public void sendRegisterMail(ReceiveMailDto receiveMailDto) {
-        SimpleMailMessage email = generateRegisterMailMessage(receiveMailDto.getEmail(), receiveMailDto.getToken());
+        String subject = "Please verify your email address...";
+        String message = "To confirm registration, please click the link: " + " http://localhost:8080/registerservice/api/registrationConfirm?t=" + receiveMailDto.getToken();
+        SimpleMailMessage email = generateMailMessage(receiveMailDto.getEmail(), subject, message);
         emailSender.send(email);
     }
 
-    private SimpleMailMessage generateRegisterMailMessage(String userEmail, String token) {
-        String sendTo = userEmail;
-        String subject = "Please verify your email address...";
-        //TODO: Refactor mail link
-        String confirmationUrl = "http://localhost:8080/registerservice/api/registrationConfirm?t=" + token;
-        String message = "To confirm registration, please click the link: "  + confirmationUrl;
+    public void sendPasswordResetMail(ReceiveMailDto mailDto) {
+        String subject = "Please reset your password...";
+        String message = "To reset your password, please click the link: " + " http://localhost:8080/registerservice/api/resetPassword?t=" + mailDto.getToken();
+        SimpleMailMessage email = generateMailMessage(mailDto.getEmail(), subject, message);
+        emailSender.send(email);
+    }
+
+    private SimpleMailMessage generateMailMessage(String userEmail, String subject, String message) {
         SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo(sendTo);
+        email.setTo(userEmail);
         email.setSubject(subject);
         email.setText(message);
         return email;
